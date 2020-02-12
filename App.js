@@ -1,4 +1,6 @@
 // Import Modules
 const initServer = require('./Server');
+const crud = require('./Crud');
 
-initServer();
+crud.insertData();
+//initServer();
