@@ -2,7 +2,7 @@
   "name": "todolist_project",
   "version": "1.0.0",
   "description": "A simple todolist project with node ",
-  "main": "index.js",
+  "main": "App.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/stephanevieira75/todolist_project#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "mongodb": "^3.5.3"
   }
 }
