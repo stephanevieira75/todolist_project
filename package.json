@@ -1,0 +1,19 @@
+{
+  "name": "todolist_project",
+  "version": "1.0.0",
+  "description": "A simple todolist project with node ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/stephanevieira75/todolist_project.git"
+  },
+  "author": "Stéphane Vieira",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/stephanevieira75/todolist_project/issues"
+  },
+  "homepage": "https://github.com/stephanevieira75/todolist_project#readme"
+}
