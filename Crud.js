@@ -2,11 +2,12 @@
 const Data = require('./Database');
 
 // Create
-let insertData = () => {
+let setTasks = (taskMessage, boolStatus) => {
     const mongoDatabase = require('mongodb');
     const MongoClient = mongoDatabase.MongoClient;
 
     const client = new MongoClient(Data.url);
+    
 
     client.connect()
     .then(()=> {
@@ -15,7 +16,7 @@ let insertData = () => {
         return collection;
     })
     .then((collection) => {
-        return collection.insertMany(Data.documents);
+        return collection.insertOne({message: taskMessage, status: boolStatus});
     })
     .then((response) => {
         console.log('Inserted: ', response.result.n, 'documents');
@@ -25,4 +26,4 @@ let insertData = () => {
     .catch((e) => console.log(e));
 };
 
-module.exports = { insertData }
+module.exports = { setTasks }

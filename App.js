@@ -2,5 +2,5 @@
 const initServer = require('./Server');
 const crud = require('./Crud');
 
-crud.insertData();
+crud.setTasks('task power lorem ipsum', false);
 //initServer();
