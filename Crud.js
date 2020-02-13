@@ -54,10 +54,11 @@ let getTasks = () => {
 };
 
 // Update
-let updateTask = (taskMessage, boolStatus, newTaskMessage=taskMessage) => {
+let updateTask = (idValue, taskMessage, boolStatus) => {
 
     const mongoDatabase = require('mongodb');
     const MongoClient = mongoDatabase.MongoClient;
+    const ObjectID = require('mongodb').ObjectID;
 
     const client = new MongoClient(Data.url);
 
@@ -68,7 +69,7 @@ let updateTask = (taskMessage, boolStatus, newTaskMessage=taskMessage) => {
         return collection;
     })
     .then((collection) => {
-            return collection.updateMany({message: taskMessage }, { $set: { message: newTaskMessage, status: boolStatus }});
+        return collection.updateMany({ _id: ObjectID(idValue) }, { $set: { message: taskMessage, status: boolStatus }});
     })
     .then((response) => {
         console.log('Updated', response.result.n, 'documents');
