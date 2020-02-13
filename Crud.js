@@ -2,7 +2,7 @@
 const Data = require('./Database');
 
 // Create
-let setTasks = (taskMessage, boolStatus) => {
+let setTask = (taskMessage, boolStatus) => {
     const mongoDatabase = require('mongodb');
     const MongoClient = mongoDatabase.MongoClient;
 
@@ -54,7 +54,7 @@ let getTasks = () => {
 };
 
 // Update
-let updateTasks = (taskMessage, boolStatus, newTaskMessage=taskMessage) => {
+let updateTask = (taskMessage, boolStatus, newTaskMessage=taskMessage) => {
 
     const mongoDatabase = require('mongodb');
     const MongoClient = mongoDatabase.MongoClient;
@@ -77,5 +77,28 @@ let updateTasks = (taskMessage, boolStatus, newTaskMessage=taskMessage) => {
     .catch((e) => console.log(e));
 }
 
+// Delete
+let deleteTask = (taskMessage) => {
 
-module.exports = { setTasks, getTasks, updateTasks }
+    const mongoDatabase = require('mongodb');
+    const MongoClient = mongoDatabase.MongoClient;
+
+    const client = new MongoClient(Data.url);
+
+    client.connect()
+    .then(()=> {
+        const db = client.db(Data.name);
+        const collection = db.collection(Data.collectionName);
+        return collection;
+    })
+    .then((collection) => {
+            return collection.deleteOne({message: taskMessage });
+    })
+    .then((response) => {
+        console.log('Removed', response.result.n, 'documents');
+    })
+    .then(() => client.close())
+    .catch((e) => console.log(e));
+}
+
+module.exports = { setTask, getTasks, updateTask, deleteTask };
