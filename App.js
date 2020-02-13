@@ -1,4 +1,7 @@
 // Import Modules
 const initServer = require('./Server');
+const crud = require('./Crud');
 
-initServer();
+//crud.setTasks('task power lorem ipsum', false);
+//crud.getTasks();
+//initServer();
