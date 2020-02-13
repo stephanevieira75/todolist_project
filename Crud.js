@@ -79,10 +79,11 @@ let updateTask = (idValue, taskMessage, boolStatus) => {
 }
 
 // Delete
-let deleteTask = (taskMessage) => {
+let deleteTask = (idValue) => {
 
     const mongoDatabase = require('mongodb');
     const MongoClient = mongoDatabase.MongoClient;
+    const ObjectID = require('mongodb').ObjectID;
 
     const client = new MongoClient(Data.url);
 
@@ -93,7 +94,7 @@ let deleteTask = (taskMessage) => {
         return collection;
     })
     .then((collection) => {
-            return collection.deleteOne({message: taskMessage });
+            return collection.deleteOne({ _id: ObjectID(idValue) });
     })
     .then((response) => {
         console.log('Removed', response.result.n, 'documents');
