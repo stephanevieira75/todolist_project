@@ -46,7 +46,7 @@ let getTasks = () => {
         for(ele in documents)
         {
             console.log('[================================]')
-            console.log(`  id: "${documents[ele]._id}"\n  message: "${documents[ele].message}"\n  password: "${documents[ele].status}"\n`);
+            console.log(`  id: "${documents[ele]._id}"\n  message: "${documents[ele].message}"\n  status: "${documents[ele].status}"\n`);
         }  
     })
     .then(() => client.close())
