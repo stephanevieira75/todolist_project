@@ -53,4 +53,29 @@ let getTasks = () => {
     .catch((e) => console.log(e));
 };
 
-module.exports = { setTasks, getTasks }
+// Update
+let updateTasks = (taskMessage, boolStatus, newTaskMessage=taskMessage) => {
+
+    const mongoDatabase = require('mongodb');
+    const MongoClient = mongoDatabase.MongoClient;
+
+    const client = new MongoClient(Data.url);
+
+    client.connect()
+    .then(()=> {
+        const db = client.db(Data.name);
+        const collection = db.collection(Data.collectionName);
+        return collection;
+    })
+    .then((collection) => {
+            return collection.updateMany({message: taskMessage }, { $set: { message: newTaskMessage, status: boolStatus }});
+    })
+    .then((response) => {
+        console.log('Updated', response.result.n, 'documents');
+    })
+    .then(() => client.close())
+    .catch((e) => console.log(e));
+}
+
+
+module.exports = { setTasks, getTasks, updateTasks }
